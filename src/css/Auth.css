@@ -1,0 +1,74 @@
+/* Auth.css */
+
+.auth-wrapper {
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  background-color: #fafafa;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+
+
+.brand-title {
+  font-size: 48px;
+  font-weight: bold;
+  color: #262626;
+}
+
+
+
+.auth-box {
+  width: 350px;
+  background-color: rgb(155, 161, 184);
+  
+  padding: 2px;
+  text-align: center;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.05);
+  border-radius: 10px;
+}
+
+.auth-box form {
+  display: flex;
+  flex-direction: column;
+}
+
+.auth-box input {
+  margin: 8px 0;
+  padding: 10px;
+  border: 1px solid #705656;
+  border-radius: 5px;
+  background-color: #f7f7f7;
+}
+
+.auth-box button {
+  margin-top: 3px;
+  padding: 10px;
+  background-color: #0095f6;
+  border: none;
+  color: white;
+  font-weight: bold;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.auth-box button:hover {
+  background-color: #007cd5;
+}
+
+.auth-toggle-message {
+  margin-top: 5px;
+  font-size: 14px;
+  color: #262626;
+}
+
+.auth-toggle-message span {
+  color: #0095f6;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.auth-toggle-message span:hover {
+  text-decoration: underline;
+}

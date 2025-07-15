@@ -1,0 +1,302 @@
+.chat-container {
+  padding: 25px;
+  font-family: 'Segoe UI', sans-serif;
+  max-width: 800px;
+  margin: auto;
+}
+
+.chat-title {
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.chat-user {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.chat-user img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+}
+
+.chat-messages {
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  background-color: #f1f1f1;
+  height: 400px;
+  overflow-y: auto;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-bottom: 15px;
+}
+
+.message-card {
+  max-width: 70%;
+  padding: 12px;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.message-card.left {
+  align-self: flex-start;
+ 
+}
+
+.message-card.right {
+  align-self: flex-end;
+ 
+  
+}
+
+.message-body img {
+  width: 150px;
+  height: 150px;
+  border-radius: 10px;
+}
+
+.message-decrypted {
+  background-color: #fff;
+  padding: 10px;
+  border-radius: 8px;
+  font-weight: 500;
+  border: 1px dashed #888;
+}
+
+.decrypt-section {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.decrypt-section input {
+  padding: 5px 10px;
+  width: 80px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+.decrypt-section button {
+  padding: 5px 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.chat-input {
+  display: flex;
+  gap: 10px;
+}
+
+.chat-input input {
+  flex: 1;
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+.chat-input button {
+  padding: 10px 16px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+.message-card {
+  position: relative;
+  transition: transform 0.3s ease;
+}
+
+.message-card.right.expanded .message-body {
+  transform: translateX(-60px);
+}
+
+.message-card.left.expanded .message-body {
+  transform: translateX(60px);
+}
+
+.expand-toggle {
+  position: absolute;
+  top: 10px;
+  background-color: transparent;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: #333;
+}
+
+.right-btn {
+  right: -10px;
+}
+
+.left-btn {
+  left: -10px;
+}
+
+.decrypt-section.side-expand {
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+}
+
+.decrypt-section.side-expand input {
+  margin-bottom: 8px;
+  padding: 5px 8px;
+  border: 1px solid #aaa;
+  border-radius: 6px;
+  width: 100px;
+}
+
+.decrypt-section .btn-group {
+  display: flex;
+  gap: 6px;
+}
+
+.decrypt-section .btn-group button {
+  padding: 6px 8px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+}
+.message-card {
+  position: relative;
+  transition: transform 0.3s ease;
+}
+
+.message-card.right.expanded .message-body {
+  transform: translateX(-60px);
+}
+
+.message-card.left.expanded .message-body {
+  transform: translateX(60px);
+}
+
+.expand-toggle {
+  position: absolute;
+  top: 10px;
+  background-color: transparent;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: #333;
+}
+
+.right-btn {
+  right: -10px;
+}
+
+.left-btn {
+  left: -10px;
+}
+
+.decrypt-section.side-expand {
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+}
+
+.decrypt-section.side-expand input {
+  margin-bottom: 8px;
+  padding: 5px 8px;
+  border: 1px solid #aaa;
+  border-radius: 6px;
+  width: 100px;
+}
+
+.decrypt-section.side-expand button {
+  padding: 6px 8px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+}
+.encrypted-avatar {
+  width: 150px;
+  height: 150px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.encrypted-avatar:hover {
+  transform: scale(1.05);
+}
+
+.decrypt-section.side-expand {
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+}
+
+.decrypt-section.side-expand input {
+  margin-bottom: 8px;
+  padding: 5px 8px;
+  border: 1px solid #aaa;
+  border-radius: 6px;
+  width: 100px;
+}
+
+.decrypt-section.side-expand button {
+  padding: 6px 8px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.decrypt-hide-btn {
+  margin-top: 8px;
+  padding: 6px 10px;
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+.decrypt-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.small-password-input {
+  width: 40px;
+  padding: 5px;
+  text-align: center;
+  border-radius: 6px;
+  border: 1px solid #aaa;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.decrypt-btn {
+  padding: 6px 10px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.decrypt-btn:hover {
+  background-color: #005dc4;
+}

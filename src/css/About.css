@@ -1,0 +1,160 @@
+.about-container {
+  padding: 2rem;
+  max-width: 900px;
+  margin: auto;
+  font-family: 'Segoe UI', sans-serif;
+  color: #333;
+}
+
+.about-header h1 {
+  font-size: 2.4rem;
+  margin-bottom: 1rem;
+  color: #0f0f0f;
+}
+
+.about-section {
+  margin-bottom: 2.5rem;
+}
+
+.about-section h2 {
+  font-size: 1.6rem;
+  margin-bottom: 0.8rem;
+  color: #222;
+}
+
+.intro-text {
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+.about-section ul {
+  padding-left: 1.5rem;
+  line-height: 1.8;
+}
+
+.channel-details,
+.developer-details {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1rem;
+  flex-wrap: wrap;
+}
+
+
+.channel-logo{
+  width: 100px;
+  height: 100px;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+
+.developer-photo {
+  width: 120px;
+  height: 120px;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.channel-meta p,
+.developer-meta p {
+  margin: 0.3rem 0;
+}
+
+.contact-section a {
+  color: #0073e6;
+  text-decoration: none;
+}
+
+.contact-section a:hover {
+  text-decoration: underline;
+}
+
+.credits-section {
+  font-size: 0.95rem;
+  color: #555;
+}
+
+a {
+  color: #0073e6;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+.social-icons {
+  display: flex;
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
+.social-icons a {
+  font-size: 1.6rem;
+  transition: color 0.2s;
+}
+
+/* YouTube - Red */
+.social-icons .youtube-icon {
+  color: #FF0000;
+}
+.social-icons .youtube-icon:hover {
+  color: #cc0000;
+}
+
+/* LinkedIn - Blue */
+.social-icons .linkedin-icon {
+  color: #0077B5;
+}
+.social-icons .linkedin-icon:hover {
+  color: #005582;
+}
+
+/* GitHub - Black */
+.social-icons .github-icon {
+  color: #333333;
+}
+.social-icons .github-icon:hover {
+  color: #000000;
+}
+.channel-button {
+  display: inline-block;
+  padding: 0.5rem 0.8rem;
+  background-color: #FF0000; /* YouTube Red */
+  color: #fff;
+  font-weight: 500;
+  text-decoration: none;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+}
+
+.channel-button:hover {
+  background-color: #cc0000;
+}
+
+
+
+.channel-details {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center;
+  gap: 3rem;
+  flex-wrap: nowrap;
+}
+
+.developer-details {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 1.5rem;
+  flex-wrap: nowrap;
+}
+
+
+.footer {
+  font-size: 0.85rem;
+  color: #888;
+  text-align: center;
+  margin-top: 2rem;
+  padding: 1rem 0;
+}

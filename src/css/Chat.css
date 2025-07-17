@@ -24,6 +24,7 @@
 }
 
 .chat-messages {
+  max-height: 500px;
   border: 1px solid #ccc;
   border-radius: 10px;
   background-color: #f1f1f1;

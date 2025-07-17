@@ -1,16 +1,12 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import '../css/Register.css';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { auth } from '../firebaseClient';
 
 function Register() {
-  const [form, setForm] = useState({
-    username: '',
-    email: '',
-    password: '',
-  });
-
+  const [form, setForm] = useState({ username: '', email: '', password: '' });
   const [responseMsg, setResponseMsg] = useState('');
-  const [isLoading, setIsLoading] = useState(false); // ✅ loading state
+  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -19,25 +15,30 @@ function Register() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setIsLoading(true); // ✅ show spinner
-
+    setIsLoading(true);
     try {
-      const res = await fetch('https://shadow-chat-firebase-3.onrender.com/auth/register', {
+      // ✅ Firebase Auth
+      const userCredential = await createUserWithEmailAndPassword(auth, form.email, form.password);
+      const idToken = await userCredential.user.getIdToken();
+
+      // ✅ Send profile info + token to backend
+      const res = await fetch('http://127.0.0.1:8000/auth/register', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(form),
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          username: form.username,
+          email: form.email,
+          avatar: "", // or leave out
+          id_token: idToken,
+        }),
       });
 
       const data = await res.json();
-
       if (!res.ok) {
         setResponseMsg('Registration failed: ' + (data.detail || 'Unknown error'));
         return;
       }
 
-      // ✅ Save user data
       localStorage.setItem('user', JSON.stringify({
         user_id: data.user.user_id,
         username: data.user.username,
@@ -48,63 +49,31 @@ function Register() {
       }));
 
       setResponseMsg('Registration successful!');
-      navigate('/dashboard'); // redirect
-    } catch (error) {
-      setResponseMsg('Error: ' + error.message);
+      navigate('/dashboard');
+    } catch (err) {
+      setResponseMsg('Error: ' + err.message);
     } finally {
-      setIsLoading(false); // ✅ hide spinner
+      setIsLoading(false);
     }
   };
 
   return (
     <div className="register-form">
       <h2>Shadow Chat</h2>
-
-      {/* ✅ Spinner displayed while loading */}
       {isLoading && <div className="spinner"></div>}
-
       <form onSubmit={handleSubmit}>
-        <div>
-          <input
-            type="text"
-            name="username"
-            placeholder="Username"
-            value={form.username}
-            onChange={handleChange}
-            required
-          />
-        </div>
+        <input type="text" name="username" placeholder="Username" value={form.username} onChange={handleChange} required />
         <br />
-        <div>
-          <input
-            type="email"
-            name="email"
-            placeholder="Email"
-            value={form.email}
-            onChange={handleChange}
-            required
-          />
-        </div>
+        <input type="email" name="email" placeholder="Email" value={form.email} onChange={handleChange} required />
         <br />
-        <div>
-          <input
-            type="password"
-            name="password"
-            placeholder="Password"
-            value={form.password}
-            onChange={handleChange}
-            required
-          />
-        </div>
+        <input type="password" name="password" placeholder="Password" value={form.password} onChange={handleChange} required />
         <br />
-        <button type="submit" disabled={isLoading}>
-          {isLoading ? 'Registering...' : 'Register'}
-        </button>
+        <button type="submit" disabled={isLoading}>{isLoading ? 'Registering...' : 'Register'}</button>
       </form>
-
       <p>{responseMsg}</p>
     </div>
   );
 }
 
 export default Register;
+

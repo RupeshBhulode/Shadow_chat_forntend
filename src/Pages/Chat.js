@@ -7,7 +7,7 @@ function Chat() {
   const [message, setMessage] = useState('');
   const [conversation, setConversation] = useState([]);
   const messagesRef = useRef(null);
-
+  const bottomRef = useRef(null);
   const location = useLocation();
   const params = new URLSearchParams(location.search);
   const senderId = params.get('sender_id');
@@ -19,7 +19,11 @@ function Chat() {
     const user = JSON.parse(localStorage.getItem('selectedUser'));
     if (user) setSelectedUser(user);
   }, []);
-
+  useEffect(() => {
+  if (bottomRef.current) {
+    bottomRef.current.scrollIntoView({ behavior: "smooth" }); 
+  }
+  }, [conversation]);
   useEffect(() => {
     if (!senderId || !receiverId || !user?.user_id) return;
 
@@ -93,6 +97,7 @@ setSocket(ws);
         )) : (
           <p>{conversation[0]?.system}</p>
         )}
+        <div ref={bottomRef}></div>
       </div>
 
       <div className="chat-input">

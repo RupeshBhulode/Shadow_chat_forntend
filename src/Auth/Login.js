@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import '../css/Login.css';
+import { signInWithEmailAndPassword } from 'firebase/auth';
+import { auth } from '../firebaseClient';
 
 function Login() {
   const [form, setForm] = useState({ email: '', password: '' });
   const [responseMsg, setResponseMsg] = useState('');
-  const [isLoading, setIsLoading] = useState(false); // ✅ for spinner
+  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -14,24 +15,24 @@ function Login() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setIsLoading(true); // ✅ show spinner
-
+    setIsLoading(true);
     try {
-      const res = await fetch('https://shadow-chat-firebase-3.onrender.com/auth/login', {
+      // ✅ Firebase Auth
+      const userCredential = await signInWithEmailAndPassword(auth, form.email, form.password);
+      const idToken = await userCredential.user.getIdToken();
+
+      // ✅ Send token to backend for profile/JWT
+      const res = await fetch('http://127.0.0.1:8000/auth/login', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(form),
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ id_token: idToken }),
       });
 
+      const data = await res.json();
       if (!res.ok) {
-        const error = await res.json();
-        setResponseMsg('Login failed: ' + (error.detail || 'Unknown error'));
+        setResponseMsg('Login failed: ' + (data.detail || 'Unknown error'));
         return;
       }
-
-      const data = await res.json();
 
       localStorage.setItem('user', JSON.stringify({
         user_id: data.user.user_id,
@@ -47,45 +48,21 @@ function Login() {
     } catch (err) {
       setResponseMsg('Error: ' + err.message);
     } finally {
-      setIsLoading(false); // ✅ hide spinner
+      setIsLoading(false);
     }
   };
 
   return (
     <div className="login-form">
       <h2>Shadow Chat</h2>
-
-      {/* ✅ Spinner shown when loading */}
       {isLoading && <div className="spinner"></div>}
-
       <form onSubmit={handleSubmit}>
-        <div>
-          <input
-            type="email"
-            name="email"
-            placeholder="Email"
-            value={form.email}
-            onChange={handleChange}
-            required
-          />
-        </div>
+        <input type="email" name="email" placeholder="Email" value={form.email} onChange={handleChange} required />
         <br />
-        <div>
-          <input
-            type="password"
-            name="password"
-            placeholder="Password"
-            value={form.password}
-            onChange={handleChange}
-            required
-          />
-        </div>
+        <input type="password" name="password" placeholder="Password" value={form.password} onChange={handleChange} required />
         <br />
-        <button type="submit" disabled={isLoading}>
-          {isLoading ? 'Logging in...' : 'Login'}
-        </button>
+        <button type="submit" disabled={isLoading}>{isLoading ? 'Logging in...' : 'Login'}</button>
       </form>
-
       <p>{responseMsg}</p>
     </div>
   );

@@ -1,13 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../firebaseClient';
 import "../css/Login.css";
+
 function Login() {
   const [form, setForm] = useState({ email: '', password: '' });
   const [responseMsg, setResponseMsg] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
+
+  // ✅ Clear form on load to prevent auto-filled values
+  useEffect(() => {
+    setForm({ email: '', password: '' });
+  }, []);
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -56,12 +62,30 @@ function Login() {
     <div className="login-form">
       <h2>Shadow Chat</h2>
       {isLoading && <div className="spinner"></div>}
-      <form onSubmit={handleSubmit}>
-        <input type="email" name="email" placeholder="Email" value={form.email} onChange={handleChange} required />
+      <form onSubmit={handleSubmit} autoComplete="off">
+        <input
+          type="email"
+          name="email"
+          placeholder="Email"
+          value={form.email}
+          onChange={handleChange}
+          autoComplete="new-email" // ✅ Prevent autofill
+          required
+        />
         <br />
-        <input type="password" name="password" placeholder="Password" value={form.password} onChange={handleChange} required />
+        <input
+          type="password"
+          name="password"
+          placeholder="Password"
+          value={form.password}
+          onChange={handleChange}
+          autoComplete="new-password" // ✅ Prevent autofill
+          required
+        />
         <br />
-        <button type="submit" disabled={isLoading}>{isLoading ? 'Logging in...' : 'Login'}</button>
+        <button type="submit" disabled={isLoading}>
+          {isLoading ? 'Logging in...' : 'Login'}
+        </button>
       </form>
       <p>{responseMsg}</p>
     </div>
@@ -69,3 +93,4 @@ function Login() {
 }
 
 export default Login;
+

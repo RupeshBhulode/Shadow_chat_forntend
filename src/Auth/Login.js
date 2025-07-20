@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../firebaseClient';
 import "../css/Login.css";
@@ -9,11 +9,22 @@ function Login() {
   const [responseMsg, setResponseMsg] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
+  const location = useLocation();
 
-  // ✅ Clear form on load to prevent auto-filled values
   useEffect(() => {
-    setForm({ email: '', password: '' });
-  }, []);
+    // ✅ Parse query params
+    const params = new URLSearchParams(location.search);
+    const recruiterParam = params.get('recruiter');
+
+    if (recruiterParam === 'auto-login') {
+      setForm({
+        email: 'demouser@gmail.com',
+        password: 'demopassword' // ✅ Replace with actual demo password
+      });
+    } else {
+      setForm({ email: '', password: '' }); // ✅ Normal user, keep empty
+    }
+  }, [location.search]);
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -23,11 +34,9 @@ function Login() {
     e.preventDefault();
     setIsLoading(true);
     try {
-      // ✅ Firebase Auth
       const userCredential = await signInWithEmailAndPassword(auth, form.email, form.password);
       const idToken = await userCredential.user.getIdToken();
 
-      // ✅ Send token to backend for profile/JWT
       const res = await fetch('https://shadow-chat-firebase-3.onrender.com/auth/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -69,7 +78,7 @@ function Login() {
           placeholder="Email"
           value={form.email}
           onChange={handleChange}
-          autoComplete="new-email" // ✅ Prevent autofill
+          autoComplete="new-email"
           required
         />
         <br />
@@ -79,7 +88,7 @@ function Login() {
           placeholder="Password"
           value={form.password}
           onChange={handleChange}
-          autoComplete="new-password" // ✅ Prevent autofill
+          autoComplete="new-password"
           required
         />
         <br />

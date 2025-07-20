@@ -19,7 +19,7 @@ function Login() {
     if (recruiterParam === 'auto-login') {
       setForm({
         email: 'demouser@gmail.com',
-        password: 'demopassword' // ✅ Replace with actual demo password
+        password: '05Aug2003#' // ✅ Replace with actual demo password
       });
     } else {
       setForm({ email: '', password: '' }); // ✅ Normal user, keep empty

@@ -10,7 +10,7 @@ function RecruiterAutoLogin() {
   useEffect(() => {
     const autoLogin = async () => {
       try {
-        const userCredential = await signInWithEmailAndPassword(auth, "demo@chat.com", "Demo@123");
+        const userCredential = await signInWithEmailAndPassword(auth, "demouser@gmail.com", "05Aug2003#");
         const idToken = await userCredential.user.getIdToken();
 
         const res = await fetch('https://shadow-chat-firebase-3.onrender.com/auth/login', {

@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import Login from './Login';
 import Register from './Register';
 import '../css/Auth.css';
-
+import A from './A';
 function Auth() {
   const [page, setPage] = useState('login');
 

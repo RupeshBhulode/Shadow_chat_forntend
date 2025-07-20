@@ -7,7 +7,7 @@ import Navbar from './Navbar';
 import UserProfile from './Pages/UserProfile';
 import Chat from './Pages/Chat';
 import ChatPartners from './Pages/ChatPartners';
-
+import A from './Auth/a';
 
 function App() {
   return (
@@ -19,7 +19,7 @@ function App() {
       <Route path="/profile" element={<UserProfile />} />
       <Route path="/chat" element={<Chat />} />
       <Route path="/chats" element={<ChatPartners />} />
-     
+     <Route path="/a" element={<A />} />
     </Routes>
   );
 }

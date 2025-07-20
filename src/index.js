@@ -5,7 +5,7 @@ import App from './App';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <HashRouter>   {/* ⬅️ change this line */}
+  <BrowserRouter>
     <App />
-  </HashRouter>
+  </BrowserRouter>
 );

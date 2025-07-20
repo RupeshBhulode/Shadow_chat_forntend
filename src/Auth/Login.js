@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../firebaseClient';
 import "../css/Login.css";
@@ -9,22 +9,6 @@ function Login() {
   const [responseMsg, setResponseMsg] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
-  const location = useLocation();
-
-  useEffect(() => {
-    // ✅ Parse query params
-    const params = new URLSearchParams(location.search);
-    const recruiterParam = params.get('recruiter');
-
-    if (recruiterParam === 'auto-login') {
-      setForm({
-        email: 'demouser@gmail.com',
-        password: '05Aug2003#' // ✅ Replace with actual demo password
-      });
-    } else {
-      setForm({ email: '', password: '' }); // ✅ Normal user, keep empty
-    }
-  }, [location.search]);
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -102,4 +86,5 @@ function Login() {
 }
 
 export default Login;
+
 

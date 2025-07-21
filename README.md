@@ -4,6 +4,26 @@ A modern and secure chat interface built using **React**, providing seamless use
 
 ---
 
+<img width="1920" height="1080" alt="Screenshot (222)" src="https://github.com/user-attachments/assets/885df505-545d-4f12-a375-9fddc46f4eeb" />
+
+<img width="1920" height="1080" alt="Screenshot (224)" src="https://github.com/user-attachments/assets/f2ab6f0a-44e5-472a-8fce-d77b15b8f5b1" />
+
+<img width="1920" height="1080" alt="Screenshot (225)" src="https://github.com/user-attachments/assets/8bace7c4-1b5e-4caa-93e7-1200bb2e7a81" />
+
+<img width="1920" height="1080" alt="Screenshot (226)" src="https://github.com/user-attachments/assets/b6ce3876-0b48-4abc-bee0-1c8bcdaa03c1" />
+
+<img width="1920" height="1080" alt="Screenshot (227)" src="https://github.com/user-attachments/assets/22844c9e-a800-4779-864e-ec6409e2d8ab" />
+
+<img width="1920" height="1080" alt="Screenshot (228)" src="https://github.com/user-attachments/assets/40bf87cf-0dae-4a74-9589-2aaad89057c4" />
+
+<img width="1920" height="1080" alt="Screenshot (223)" src="https://github.com/user-attachments/assets/652197e8-af6d-4309-8bed-12b8c173e038" />
+
+<img width="1920" height="1080" alt="Screenshot (230)" src="https://github.com/user-attachments/assets/bdcd415d-51de-4e77-8622-cb57886a6ea3" />
+
+
+
+
+---
 ### ✨ Core Functionality
 
 - 🔐 **Login / Register** using **Firebase Authentication**
